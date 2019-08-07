@@ -1,2 +1,4 @@
-# dailycodingproblems
-My Solutions for DailyCodingProblem.com
+# DailyCodingProblems
+My solutions for DailyCodingProblem.com questions
+Author: Jason Shen - shenj529@gmail.com
+
