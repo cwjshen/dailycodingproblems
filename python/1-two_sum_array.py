@@ -3,6 +3,8 @@
 # For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
 # Bonus: Can you do this in one pass?
 
+# Leetcode #1 - "Two Sum" variation
+
 array1 = [10, 15, 3, 7]
 array2 = [11, 15, 3, 7]
 k = 17
