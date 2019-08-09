@@ -15,10 +15,61 @@
 # A ^ B = C 
 # A = C ^ B
 
+# from ctypes import *
 
 class Node:
     def __init__(self, val, both=None):
         self.val = val
         self.both = both
 
-        
+class XORLinkedList:
+	def __init__(self, head_ptr):
+		self.head = head_ptr
+
+	def print_ll(self):
+		curr_node = dereference_pointer(self.head)
+		while curr_node.both != None:
+			print((curr_node.val, curr_node.both), end='->')
+			curr_node = dereference_pointer(curr_node.both ^ get_pointer(curr_node))
+		print((curr_node.val, curr_node.both))
+
+	def add(self, Node):
+		visited_addrs = set()
+		curr_node = dereference_pointer(self.head)
+		while curr_node.both != None:
+			visited_addrs.add(get_pointer(curr_node))
+			curr_node = dereference_pointer(curr_node.both ^ get_pointer(curr_node))
+
+		visited_addrs.add(get_pointer(curr_node))	
+		if get_pointer(Node) not in visited_addrs:
+			curr_node.both = get_pointer(curr_node) ^ get_pointer(Node)
+			print(Node.val, ' added')
+		else:
+			print(Node.val, ' already exists')
+		
+
+	# def get(index):
+
+my_nodes = [Node('a'), Node('b'), Node('c'), Node('d'), Node('e')]
+my_addrs = [0, 1, 2, 3, 4]
+nodes_to_addrs = dict(zip(my_nodes, my_addrs))
+addrs_to_nodes = dict(zip(my_addrs, my_nodes))
+
+# Implement method to mock the retrieval of pointer for a node
+def get_pointer(Node):
+	return nodes_to_addrs[Node]
+
+def dereference_pointer(ptr):
+	return addrs_to_nodes[ptr]
+
+xor_linked_list = XORLinkedList(get_pointer(my_nodes[0]))
+xor_linked_list.add(my_nodes[1])
+xor_linked_list.add(my_nodes[2])
+xor_linked_list.add(my_nodes[3])
+xor_linked_list.add(my_nodes[4])
+
+
+
+xor_linked_list.print_ll()
+# print(dereference_pointer(xor_linked_list.head).val)
+# print(dereference_pointer(dereference_pointer(xor_linked_list.head).both ^ get_pointer(dereference_pointer(xor_linked_list.head))).val)
