@@ -15,8 +15,6 @@
 # A ^ B = C 
 # A = C ^ B
 
-# from ctypes import *
-
 class Node:
     def __init__(self, val, both=None):
         self.val = val
@@ -48,7 +46,16 @@ class XORLinkedList:
 			print(Node.val, ' already exists')
 		
 
-	# def get(index):
+	def get(self, index):
+		curr_node = dereference_pointer(self.head)
+		if index == 0:
+			return curr_node
+		for i in range(1, index + 1):
+			if curr_node.both == None:
+				print('index out of list size range')
+				return
+			curr_node = curr_node = dereference_pointer(curr_node.both ^ get_pointer(curr_node))
+		return curr_node			
 
 my_nodes = [Node('a'), Node('b'), Node('c'), Node('d'), Node('e')]
 my_addrs = [0, 1, 2, 3, 4]
@@ -71,5 +78,6 @@ xor_linked_list.add(my_nodes[4])
 
 
 xor_linked_list.print_ll()
+print(xor_linked_list.get(4))
 # print(dereference_pointer(xor_linked_list.head).val)
 # print(dereference_pointer(dereference_pointer(xor_linked_list.head).both ^ get_pointer(dereference_pointer(xor_linked_list.head))).val)
