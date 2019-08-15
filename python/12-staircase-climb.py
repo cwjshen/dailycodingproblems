@@ -74,6 +74,7 @@ def staircase_ways_variable_steps_dp(n, xs):
 
 
 # print(staircase_ways_rec(35))
-# print(staircase_ways_dp(35))
+# print(staircase_ways_dp(7))
+print([staircase_ways_variable_steps_dp(x, [1,3,5]) for x in range(20)])
 # print(staircase_ways_variable_steps_rec(35, [1,3,5]))
-print(staircase_ways_variable_steps_dp(35, [1,3,5]))
+# print(staircase_ways_variable_steps_dp(4, [1,3,5]))
