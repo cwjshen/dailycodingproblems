@@ -74,13 +74,17 @@ def autocomplete(query_string, allowed_strings):
 
 def main():
     possible_words = [
-        'test',
+        'test two',
+        'testing',
+        'shaan',
+        'shaaning',
         'hello',
         'help',
-        'helper'
+        'helper',
+        ''
     ]
 
-    query_string = 't'
+    query_string = 'test'
 
     print(autocomplete(query_string, possible_words))
 
