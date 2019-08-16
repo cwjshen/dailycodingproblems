@@ -19,15 +19,16 @@ def sample_pi(num_samples):
         random_y = random.random()
 
         # You calculate the r value for random sample x and y
-        # Over a large enough number of samples, the ratio of number of r's that have a value of less than 1 to the number 
-        #   of r's with value greater than 1 should approximate to sample_pi
+        # Over a large enough number of samples, the ratio of number of r's that have a value of less than 1 to the total number of r's
+        #   should be about pi/4
 
-        random_rs.append(math.sqrt(random_x**2 + random_y**2))
+        random_rs.append(random_x*random_x + random_y*random_y)
 
     counter = 0
     for r in random_rs:
         if r < 1:
             counter += 1
-    return counter / (len(random_rs) - counter)
+    return counter / len(random_rs) * 4
 
 print(sample_pi(100000))
+    
