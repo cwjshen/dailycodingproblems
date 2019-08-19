@@ -31,10 +31,22 @@
 
 # The name of a directory or sub-directory will not contain a period.
 
+# SOME ASSUMPTIONS I WOULD ASK DURING THE INTERVIEW:    
+# Can I assume that there will only ever be one root level directory?
+# Can I assume that the input file system string is valid / forms a valid directory tree?
 
 def longest_file_path(file_system_string):
+    # If empty string, return 0
+    if not file_system_string:
+        return 0
+    # if not a base directory and not a file
+    if '\\' not in file_system_string and '.' not in file_system_string:
+        return 0
     # Base directory will be whatever comes before the first occurence of a new line
-    base_dir = file_system_string[:file_system_string.find('\n')]
+    if '\n' in file_system_string:
+        base_dir = file_system_string[:file_system_string.find('\n')]
+    else:
+        base_dir = file_system_string
     current_path = base_dir
     current_longest_path = current_path
     prev_num_tabs = 0
@@ -62,12 +74,14 @@ def longest_file_path(file_system_string):
                     # Cut off string by last find of '/' for the number of times you need to backtrack
                     current_path = current_path[:current_path.rfind('/')]
                 # After cutting off the amount backtracked, add the current path
+                prev_num_tabs = curr_num_tabs
                 current_path = current_path + '/' + file_system_string[begin_index:end_index]
         if len(current_path) > len(current_longest_path):
             current_longest_path = current_path
-    return current_longest_path
+    return len(current_longest_path)
 
 a = "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext\n\tsubdir3"
 b = "dir\n\tsubdir1\n\t\tsubsubdir1\n\tsubdir2"
-print(a)
-print(longest_file_path(a))
+c = "a.txt"
+print(c)
+print(longest_file_path(c))
