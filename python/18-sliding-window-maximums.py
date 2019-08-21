@@ -10,26 +10,31 @@
 # 8 = max(2, 7, 8)
 # 8 = max(7, 8, 7)
 # Do this in O(n) time and O(k) space. You can modify the input array in-place 
-# and you do not need to store the results. You can simply print them out as you compute them.
+# and you do not need to store the results. You can simply print them solution as you compute them.
 
 # Also leetcode - 239. Sliding Window Maximum
 
+from collections import deque
+
 def find_maximums(arr, k):
-    curr_max = -1
-    curr_second_max
-    for i in range(k):
-        if arr[i] > curr_max:
-            curr_max = arr[i]
-    for i in range(1, k):
+    # In plain english, we define a deque saying that for a given window, whatever is at the 
+    #   the front of this deque will be the maximum for that window
+    deq = deque()
+    solution = []
+    for i, num in enumerate(arr): 
+        # Remove all indices with values smaller than current iteration value  
+        while deq and arr[deq[-1]] < num:
+            deq.pop()
+        deq.append(i)
 
+        if deq[0] == i - k:
+            deq.popleft()
+        # We only need to start appending to our solution once we get to window size
+        if i >= k - 1:
+            # Add to solution whatever is at the front of the deque
+            solution.append(arr[deq[0]])
+        print(deq, solution)
+    return solution
 
-    left_ptr = 0
-    right_ptr = k-1
-
-    while right_ptr < len(arr):
-        print(curr_max)
-        right_ptr += 1
-        if arr[left_ptr] == curr_max:
-            if arr[right_ptr] > arr[left_ptr]:
-                curr_max = arr[right_ptr]
-            else:
+# find_maximums([10, 5, 2, 7, 8, 7], 3)
+find_maximums([10, 5, 2, 7, 6, 5, 4, 6, 5], 3)
