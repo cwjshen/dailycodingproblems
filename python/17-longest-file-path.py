@@ -36,6 +36,9 @@
 # Can I assume that the input file system string is valid / forms a valid directory tree?
 
 def longest_file_path(file_system_string):
+    file_system_string = file_system_string.replace(' ', '')
+    print(file_system_string)
+
     # If empty string, return 0
     if not file_system_string:
         return 0
@@ -82,6 +85,6 @@ def longest_file_path(file_system_string):
 
 a = "dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext\n\tsubdir3"
 b = "dir\n\tsubdir1\n\t\tsubsubdir1\n\tsubdir2"
-c = "a.txt"
+c = "dir\n    file.txt"
 print(c)
 print(longest_file_path(c))
