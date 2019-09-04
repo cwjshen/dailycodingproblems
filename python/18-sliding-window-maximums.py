@@ -36,5 +36,5 @@ def find_maximums(arr, k):
         print(deq, solution)
     return solution
 
-find_maximums([10, 5, 2, 7, 8, 7], 5)
+find_maximums([10, 5, 2, 7, 8, 7], 3)
 # find_maximums([10, 5, 2, 7, 6, 5, 4, 6, 5], 3)
